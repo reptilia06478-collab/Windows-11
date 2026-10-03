@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows 11</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%230078d4' d='M3 5.5L10.5 4.4V11.4H3V5.5ZM11.5 4.2L21 2.5V11.4H11.5V4.2ZM3 12.5H10.5V19.6L3 18.5V12.5ZM11.5 12.5H21V21.5L11.5 19.8V12.5Z'/></svg>">
+</head>
+<body>
+
+<!-- ============ BOOT SCREEN ============ -->
+<div id="bootScreen">
+  <svg class="boot-logo" viewBox="0 0 24 24" fill="white">
+    <path d="M3 5.5L10.5 4.4V11.4H3V5.5ZM11.5 4.2L21 2.5V11.4H11.5V4.2ZM3 12.5H10.5V19.6L3 18.5V12.5ZM11.5 12.5H21V21.5L11.5 19.8V12.5Z"/>
+  </svg>
+  <div class="boot-brand">WINDOWS 11</div>
+  <div class="boot-spinner"></div>
+</div>
+
+<!-- ============ LOCK SCREEN ============ -->
+<div id="lockScreen">
+  <div class="lock-time" id="lockTime">--:--</div>
+  <div class="lock-date" id="lockDate">--</div>
+  <div class="lock-hint" id="lockHint">Klik di mana saja untuk masuk</div>
+</div>
+
+<!-- ============ DESKTOP ============ -->
+<div id="desktop">
+  <div class="desktop-icons" id="desktopIcons"></div>
+</div>
+
+<!-- ============ SNAP PREVIEW ============ -->
+<div id="snapPreview"></div>
+
+<!-- ============ START MENU ============ -->
+<div id="startMenu">
+  <input type="text" class="start-search" id="startSearch" placeholder="Ketik di sini untuk menelusuri">
+  <div class="start-header">
+    <span>Disematkan</span>
+    <button id="allAppsBtn">Semua aplikasi ›</button>
+  </div>
+  <div class="start-apps" id="startApps"></div>
+  <div class="start-footer">
+    <div class="user-info">
+      <div class="user-avatar">R</div>
+      <div>Rabi</div>
+    </div>
+    <button class="power-btn" id="powerBtn" title="Daya">⏻</button>
+  </div>
+</div>
+
+<!-- ============ NOTIFICATION CENTER ============ -->
+<div id="notifCenter">
+  <div class="notif-header">
+    <span>Notifikasi</span>
+    <button class="notif-clear" id="clearNotifsBtn">Bersihkan semua</button>
+  </div>
+  <div class="notif-list" id="notifList">
+    <div class="notif-empty">Tidak ada notifikasi baru</div>
+  </div>
+  <div class="calendar" id="calendar"></div>
+</div>
+
+<!-- ============ QUICK SETTINGS ============ -->
+<div id="quickSettings">
+  <div class="qs-grid" id="qsGrid"></div>
+  <div class="qs-slider-group">
+    <div class="qs-label"><span>🔊 Volume</span><span id="volValue">70%</span></div>
+    <input type="range" min="0" max="100" value="70" id="volSlider">
+  </div>
+  <div class="qs-slider-group">
+    <div class="qs-label"><span>☀️ Kecerahan</span><span id="brightValue">100%</span></div>
+    <input type="range" min="30" max="100" value="100" id="brightSlider">
+  </div>
+</div>
+
+<!-- ============ COMMAND PALETTE ============ -->
+<div id="cmdPalette">
+  <input type="text" class="cmd-input" id="cmdInput" placeholder="Ketik perintah atau nama aplikasi...">
+  <div class="cmd-results" id="cmdResults"></div>
+</div>
+
+<!-- ============ TASK VIEW ============ -->
+<div id="taskView"></div>
+
+<!-- ============ ALT+TAB ============ -->
+<div id="altTab"></div>
+
+<!-- ============ CONTEXT MENU ============ -->
+<div class="context-menu" id="contextMenu">
+  <div class="context-item" data-action="refresh">Segarkan <span class="shortcut">F5</span></div>
+  <div class="context-divider"></div>
+  <div class="context-item" data-action="settings">Pengaturan tampilan</div>
+  <div class="context-item" data-action="terminal">Buka di Terminal</div>
+  <div class="context-item" data-action="vscode">Buka VS Code</div>
+  <div class="context-divider"></div>
+  <div class="context-item" data-action="cmdpalette">Command Palette <span class="shortcut">Ctrl+K</span></div>
+  <div class="context-item" data-action="taskview">Task View <span class="shortcut">Win+Tab</span></div>
+  <div class="context-divider"></div>
+  <div class="context-item" data-action="theme">Ganti Tema</div>
+  <div class="context-item" data-action="fullscreen">Layar Penuh</div>
+</div>
+
+<!-- ============ TASKBAR ============ -->
+<div id="taskbar">
+  <div class="taskbar-center">
+    <button class="tb-start" id="startBtn" title="Mulai">
+      <svg viewBox="0 0 24 24" fill="white">
+        <path d="M3 5.5L10.5 4.4V11.4H3V5.5ZM11.5 4.2L21 2.5V11.4H11.5V4.2ZM3 12.5H10.5V19.6L3 18.5V12.5ZM11.5 12.5H21V21.5L11.5 19.8V12.5Z"/>
+      </svg>
+    </button>
+    <div class="taskbar-apps" id="taskbarApps"></div>
+  </div>
+  <div class="system-tray">
+    <button class="tray-icon" id="trayWifi" title="WiFi">📶</button>
+    <button class="tray-icon" id="trayVol" title="Volume">🔊</button>
+    <button class="tray-icon" id="trayBattery" title="Baterai">🔋</button>
+    <button id="clock" title="Tanggal dan waktu">
+      <span class="clock-time" id="clockTime">--:--</span>
+      <span class="clock-date" id="clockDate">--/--/----</span>
+    </button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
